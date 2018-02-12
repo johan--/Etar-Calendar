@@ -1,16 +1,18 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
@@ -18,12 +20,12 @@ project(':external:calendar') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 26
+        buildToolsVersion '26.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 27
         }
 
         sourceSets {
@@ -49,12 +51,12 @@ project(':external:colorpicker') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 26
+        buildToolsVersion '26.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 26
         }
 
         sourceSets {
@@ -79,12 +81,12 @@ project(':external:datetimepicker') {
     }
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 26
+        buildToolsVersion '26.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 26
         }
 
         sourceSets {
@@ -113,12 +115,12 @@ project(':external:timezonepicker') {
     }
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 26
+        buildToolsVersion '26.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 26
         }
 
         sourceSets {
@@ -142,12 +144,12 @@ project(':external:chips') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 26
+        buildToolsVersion '26.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 26
         }
 
         sourceSets {
@@ -182,12 +184,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
     }
 
     useLibrary 'org.apache.http.legacy'

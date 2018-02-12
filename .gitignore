@@ -31,5 +31,14 @@ proguard/
 # Android Studio captures folder
 captures/
 
+# IntelliJ files
 .idea
+*.iml
 
+# OSX files
+.DS_Store
+
+# vi swap files
+*.swp
+
+external/
