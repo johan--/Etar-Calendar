@@ -19,21 +19,24 @@ package com.android.calendar;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract.Attendees;
 import android.provider.CalendarContract.Calendars;
+
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.provider.CalendarContract.Attendees;
 import android.provider.CalendarContract.Events;
 import android.text.format.Time;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Toast;
 
 import com.android.calendar.event.EditEventActivity;
 import com.android.calendar.selectcalendars.SelectVisibleCalendarsActivity;
@@ -129,6 +132,7 @@ public class CalendarController {
             return controller;
         }
     }
+
 
     /**
      * Removes an instance when it is no longer needed. This should be called in
@@ -414,6 +418,12 @@ public class CalendarController {
                 return;
             }
 
+            // Launch Google Calendar
+            if (event.eventType == EventType.LAUNCH_GOOGLE_CALENDAR) {
+                launchGoogleCalendar();
+                return;
+            }
+
             // Launch Calendar Visible Selector
             if (event.eventType == EventType.LAUNCH_SELECT_VISIBLE_CALENDARS) {
                 launchSelectVisibleCalendars();
@@ -555,6 +565,38 @@ public class CalendarController {
         return mPreviousViewType;
     }
 
+    private void launchGoogleCalendar() {
+        String packageName="com.google.android.calendar";
+        launchApp(mContext, packageName);
+    }
+
+    // Custom method to launch another app
+    public void launchApp(Context context, String packageName) {
+
+        // PackageManager pm = context.getActivity().getPackageManager();
+        PackageManager pm = context.getPackageManager();
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+
+        try {
+
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+            intent = pm.getLaunchIntentForPackage(packageName);
+
+            if (intent == null) {
+                throw new PackageManager.NameNotFoundException();
+            } else {
+                context.startActivity(intent);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("Launch", e.getMessage());
+        }
+    }
+
     private void launchSelectVisibleCalendars() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setClass(mContext, SelectVisibleCalendarsActivity.class);
@@ -568,6 +610,7 @@ public class CalendarController {
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         mContext.startActivity(intent);
     }
+
 
     private void launchCreateEvent(long startMillis, long endMillis, boolean allDayEvent,
                                    String title, long calendarId) {
@@ -739,6 +782,9 @@ public class CalendarController {
 
         // select which calendars to display
         final long LAUNCH_SELECT_VISIBLE_CALENDARS = 1L << 11;
+
+        // launch Google Calendar
+        final long LAUNCH_GOOGLE_CALENDAR = 1L << 12;
     }
 
     /**
@@ -871,4 +917,5 @@ public class CalendarController {
             return ATTENDEE_STATUS_NONE_MASK;
         }
     }
+
 }

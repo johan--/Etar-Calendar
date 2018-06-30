@@ -27,6 +27,11 @@
             android:icon="@drawable/ic_menu_select_visible_calendars"
             android:title="@string/menu_select_visible_calendars" />
         <item
+            android:id="@+id/google_calendar"
+            android:alphabeticShortcut="g"
+            android:icon="@drawable/ic_menu_select_visible_calendars"
+            android:title="Google Calendar" />
+        <item
             android:id="@+id/action_settings"
             android:alphabeticShortcut="s"
             android:icon="@drawable/ic_menu_settings"

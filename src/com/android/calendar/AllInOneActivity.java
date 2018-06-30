@@ -935,6 +935,9 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
             case R.id.action_settings:
                 mController.sendEvent(this, EventType.LAUNCH_SETTINGS, null, null, 0, 0);
                 break;
+            case R.id.google_calendar:
+                mController.sendEvent(this, EventType.LAUNCH_GOOGLE_CALENDAR, null, null, 0, 0);
+                break;
         }
         mDrawerLayout.closeDrawers();
         return false;
