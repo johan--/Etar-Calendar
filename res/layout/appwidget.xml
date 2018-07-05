@@ -20,6 +20,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
+    android:fontFamily="@font/nexa"
     android:orientation="vertical">
 
     <!-- Header -->

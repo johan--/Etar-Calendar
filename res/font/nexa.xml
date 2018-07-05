@@ -4,11 +4,11 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/Nexa_Light" />
+        android:font="@font/nexa_light" />
 
     <font
         android:fontStyle="normal"
         android:fontWeight="700"
-        android:font="@font/Nexa_Bold" />
+        android:font="@font/nexa_bold" />
 
 </font-family>
